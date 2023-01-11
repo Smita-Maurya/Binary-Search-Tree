@@ -1,0 +1,25 @@
+Node<int>* constructLinkedList(BinaryTreeNode<int>* root) {
+	if(root == NULL){
+		return NULL;
+	}
+	Node<int> *firstRoot = new Node<int> (root -> data);
+	Node<int> *leftSubTree = constructLinkedList(root -> left);
+	if(leftSubTree == NULL){
+		leftSubTree = firstRoot;
+	}
+	else{
+		Node<int> *t = leftSubTree;
+		while(t-> next != NULL){
+			t = t->next;
+		}
+		t->next = firstRoot;
+	}
+	Node<int> *rightSubTree = constructLinkedList(root -> right);
+	if(rightSubTree == NULL){
+		firstRoot -> next = NULL;
+        } else {
+          firstRoot->next = rightSubTree;
+        }
+        return leftSubTree;
+}
+ 
