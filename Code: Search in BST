@@ -1,0 +1,26 @@
+bool searchInBST(BinaryTreeNode<int> *root , int k) {
+	if(root==NULL){
+		return false;
+	}
+	if(root->data==k){
+		return true;
+	}
+
+    if (k < root->data) {
+      if (searchInBST(root->left, k)) {
+        return true;
+      }
+    }
+
+    if(k>root->data){
+      if (searchInBST(root->right, k)) {
+        return true;
+      }
+    } 
+	
+	else {
+      return false;
+    }
+
+        
+}
