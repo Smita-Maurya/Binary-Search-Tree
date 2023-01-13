@@ -1,0 +1,46 @@
+void helper(BinaryTreeNode<int>*root , int k){
+        if(root==NULL || k<0){
+                return ;
+        }
+        if(k==0){
+            cout<<root->data<<endl;
+        }
+        helper(root->left , k-1);
+        helper(root->right , k-1);
+
+}
+int nodesAtDistanceKhelp(BinaryTreeNode<int> *root, int node, int k) {
+  if (root == NULL || k < 0) {
+    return -1;
+  }
+  if(root->data ==node){
+          helper(root ,  k);
+          return 0;
+  }
+  int left = nodesAtDistanceKhelp(root->left , node , k);
+  if(left!=-1){
+          if(left+1==k){
+                  cout<<root->data<<endl;
+          }
+          else{
+                  helper(root->right , k-left-2);
+          }
+          return 1+left;
+  }
+  int right = nodesAtDistanceKhelp(root->right , node , k);
+  if(right!=-1){
+          if(right+1==k){
+                  cout<<root->data<<endl;
+          }
+          else{
+                  helper(root->left , k-right -2);
+          }
+          return 1+right;
+  }
+  return -1;
+    // Write
+    // your code herez
+}
+void nodesAtDistanceK(BinaryTreeNode<int> *root, int node, int k){
+        nodesAtDistanceKhelp(root , node ,k);
+}
