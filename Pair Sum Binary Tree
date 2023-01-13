@@ -1,0 +1,34 @@
+#include<algorithm>
+void preorder(BinaryTreeNode<int>*root ,vector<int> &output){
+	if(root==NULL){
+		return ;
+	}
+	preorder(root->left , output);
+	output.push_back(root->data);
+	
+	preorder(root->right , output);
+}
+ 
+void pairSum(BinaryTreeNode<int> *root, int sum) {
+	vector<int> output;
+	preorder(root , output);
+	//sort(preorder);
+	int i =0;
+	//int n = output.size();
+	int j=output.size()-1;
+	sort(output.begin() , output.end());
+	while(i<j){
+		if(output[i]+output[j]==sum){
+			cout<<output[i]<<" "<<output[j]<<endl;
+			i++;
+			j--;
+		}
+		else if(output[i]+output[j]>sum){
+			j--;
+		}
+		else{
+			i++;
+		}
+	}
+
+}
